@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Kyle Snavely</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        $('#preview-post').bind('click', function() {
+          $('#preview-title').text($('#title').val());
+          $('#preview-date-author').html($('#date').val() + " by " + $('#author').val());
+          $('#preview-text').html($('#text').val());
+          $('#preview-tags').text("Tags: " + $('#tags').val());
+          $('#blog-post-preview').show()
+        });
+      });
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style/blog.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+  </head>
+
+  <body>
+
+      {% include 'topbar.html' %}
+
+      <div class="blog-header">
+        <h1 class="blog-title">kdevops</h1>
+        <hr class="header-hr"/>
+        <p class="lead blog-description">Admins can update a blog post using the form below.</p>
+      </div>
+
+        <div class="container">
+
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+          {% if post %}
+            <form method="post" action="{{ url_for('update_post_submit', post_id=post._id) }}" id="update_post_form">
+              <label>Post title:</label><input id="title" type="text" class="create-post-form" name="title" value="{{ post.title }}" /><br />
+              <label>Author:</label><input id="author" type="text" class="create-post-form" name="author" value="{{ post.author }}" /><br />
+              <label>Date:</label><input id="date" type="text" class="create-post-form" name="date" value="{{ post.date }}" /><br />
+              <label>Post content:</label><textarea form="update_post_form" name="text" id="text" cols=40 rows=8 wrap="soft" class="create-post-form">{{ post.text }}</textarea><br />
+              <label>Tags:</label><input id="tags" type="text" class="create-post-form" name="tags" value="{% for t in post.tags %} {{ t }} {% endfor %}" /><br />
+              <center>
+                <input type="button" id="preview-post" class="form-submit create-post-form-submit" value="Preview" />
+                <input type="submit" class="form-submit create-post-form-submit" value="Update" />
+              </center>
+            </form>
+            <div id="blog-post-preview" class="blog-post-preview">
+              <h2 id="preview-title" class="blog-post-title"></h2>
+              <p id="preview-date-author" class="blog-post-meta"></p>
+              <div id="preview-text"></div>
+              <p id="preview-tags" class="blog-post-meta"></p>
+            </div><!-- /.blog-post-preview -->
+          {% else %}
+            Couldn't find the blog entry to update! :'(
+          {% endif %}
+        </div><!-- /.blog-main -->
+
+
+      {% include 'sidebar.html' %}
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+        </div>
+
+       <footer style="border: none">
+         <center>
+           <p style="font-size:0.8em">&copy; Kyle Snavely 2016</p>
+         </center>
+       </footer>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Kyle Snavely</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style/blog.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+  </head>
+
+  <body>
+
+      {% include 'topbar.html' %}
+
+      <div class="blog-header">
+        <h1 class="blog-title">kdevops</h1>
+        <hr class="header-hr"/>
+        <p class="lead blog-description">musings from deep within a tiny cloud</p>
+      </div>
+
+        <div class="container">
+
+      <div class="row">
+
+        <div class="col-sm-8 blog-main">
+          {% if post %}
+            <div class="blog-post">
+              <div class="blog-post-title"><h2><a href="{{ url_for('get_post', post_id=post._id) }}">{{ post.title }}</a></h2></div>
+              {% if current_user.is_authenticated %}<div class="blog-post-edit"><a href="{{ url_for('update_post', post_id=post._id) }}">Edit</a></div>{% endif %}
+              <p class="blog-post-meta">{{ post.date }} by {{ post.author }}</p>
+              {{ post.text|safe }}
+              <p class="blog-post-meta">Tags: {% for t in post.tags %} {{ t }} {% endfor %}</p>
+            </div><!-- /.blog-post -->
+          {% else %}
+            Couldn't find the desired blog entry! :'( Head home or try out the cool links on the sidebar.
+          {% endif %}
+        </div><!-- /.blog-main -->
+
+      {% include 'sidebar.html' %}
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+        </div>
+
+       <footer style="border: none">
+         <center>
+           <p style="font-size:0.8em">&copy; Kyle Snavely 2016</p>
+         </center>
+       </footer>
+  </body>
+</html>
