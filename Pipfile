@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "2.1.2"
+flask-login = "*"
+arrow = "*"
+pymongo = "*"
+py-bcrypt = "*"
+nose = "*"
+gunicorn = "*"
+
+[dev-packages]
+black = "*"
+
+[requires]
+python_version = "3.8"

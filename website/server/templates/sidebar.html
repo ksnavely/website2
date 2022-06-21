@@ -1,0 +1,28 @@
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module">
+<a href="https://github.com/ksnavely"><img style="margin: 0 auto; display: block;" src="{{ url_for('static', filename='images/octocat.png') }}" /></a>
+          </div>
+          <div class="sidebar-module">
+<a href="rockfall/"><img style="margin: 0 auto; display: block;" src="{{ url_for('static', filename='images/rockfall_icon.png') }}" /></a>
+          <div><center>Would you like to play a game?</center></div>
+          </div>
+          <div class="sidebar-module">
+<a href="https://www.linkedin.com/pub/kyle-snavely/70/882/37"><img style="margin: 0 auto; display: block;" src="{{ url_for('static', filename='images/linkdin.png') }}" /></a>
+          </div>
+          <div class="sidebar-module sidebar-module-inset">
+            <center>
+            <img src="{{ url_for('static', filename='images/kyle.jpg') }}" />
+            <p>I'm a software engineer and former nuclear physicist. Software is my passion -- Erlang, Python, distributed systems, infrastructure as code, and oh, roguelikes too.</p>
+            </center>
+          </div>
+          <div class="sidebar-module">
+            <center>
+            <h4>Archives</h4>
+            <ol class="list-unstyled">
+              {% for (y, m, m_name) in archive_dates() %}
+              <li><a href="{{ url_for('index') }}?date={{ y }}-{{ m }}">{{ m_name }} {{ y }}</a></li>
+              {% endfor %}
+            </ol>
+            </center>
+          </div>
+        </div><!-- /.blog-sidebar -->
