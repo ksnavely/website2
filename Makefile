@@ -21,3 +21,6 @@ test:
 
 black:
 	pipenv run black website/ tests/
+
+push-testing:
+	docker tag kdevops-website:testing ksnavely/website:testing; docker push ksnavely/website:testing
