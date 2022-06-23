@@ -16,7 +16,7 @@ make test
 make build-image
 make run-docker-gunicorn
 
-curl 127.0.0.1:5000/version
+curl 127.0.0.1:80/version
   {"ok":true,"version":"0.1.0"}
 ```
 

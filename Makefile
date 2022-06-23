@@ -2,13 +2,13 @@ build-image:
 	docker build -t kdevops-website:testing .
 
 run-docker:
-	docker run -p 127.0.0.1:5000:5000 kdevops-website:testing
+	docker run -p 127.0.0.1:80:80 kdevops-website:testing
 
 run-docker-gunicorn:
-	docker run -p 127.0.0.1:5000:5000 kdevops-website:testing pipenv run gunicorn -c /opt/website2/gunicorn.conf.py server:app
+	docker run -p 127.0.0.1:80:80 kdevops-website:testing pipenv run gunicorn -c /opt/website2/gunicorn.conf.py server:app
 
 run-docker-bash:
-	docker run -it -p 127.0.0.1:5000:5000 kdevops-website:testing /bin/bash
+	docker run -it -p 127.0.0.1:80:80 kdevops-website:testing /bin/bash
 
 run-local-flask:
 	FLASK_APP=website/server flask run
