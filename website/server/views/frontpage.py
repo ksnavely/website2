@@ -1,8 +1,8 @@
 import arrow
-from flask import redirect, render_template, request, url_for
+from flask import jsonify, redirect, render_template, request, url_for
 from flask_login import login_required
 
-from website import blog
+from website import __version__, blog
 
 
 COUNT = 5
@@ -12,6 +12,19 @@ SKIP = 0
 
 
 def index():
+    """
+    Returns version JSON.
+    """
+    info = {
+        "ok": True,
+        "version": __version__,
+        "kube": "ification"
+    }
+
+    return jsonify(info)
+
+
+def orig_index():
     """
     Returns the frontpage.
     """
