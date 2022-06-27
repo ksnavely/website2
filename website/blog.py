@@ -3,9 +3,12 @@ _blog_
 
 Create/read blog posts from a database.
 """
+from website import config
+
 import arrow
 from bson.objectid import ObjectId
 from pymongo import MongoClient as MongoClient
+from urllib.parse import quote_plus
 
 
 CLIENT = None
@@ -87,9 +90,11 @@ def update_post(post_id, title, author, text, date, tags):
 def _client():
     global CLIENT
     if CLIENT is None:
-        CLIENT = MongoClient()
+        cfg = config.get_config()
+        uri = f'mongodb://{quote_plus(cfg["MONGODB_USR"])}:{quote_plus(cfg["MONGODB_PW"])}@{cfg["MONGODB_HOST"]}'
+        CLIENT = MongoClient(host=uri, authSource=cfg["MONGODB_DB"])
     return CLIENT
 
 
 def _get_blog_posts_collection():
-    return _client().blog.posts
+    return _client().blogs.blogs
