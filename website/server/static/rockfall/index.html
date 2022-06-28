@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Rockfall!</title>
+    <script type="text/javascript" src="jquery-2.0.0.min.js"></script>
+    <script type="text/javascript">
+      var RFall = function () {}
+    </script>
+    <script src="resources.js"></script>
+    <script src="Mineshaft.js"></script>
+    <script src="Cage.js"></script>
+    <script src="Rocks.js"></script>
+    <script src="Player.js"></script>
+    <script src="EffectsManager.js"></script>
+    <script src="Effect.js"></script>
+    <script src="app.js"></script>
+    <style type="text/css">
+      canvas { border: 2px solid black; }
+      body { background-color: #252525; color: #FFFFFF; }
+      #controls { max-width:400px }
+      #title { text-align: center; font-weight: bold; }
+      #main-table {margin-left: auto; margin-right: auto}
+    </style>
+  </head>
+  <body onload="RFall.init();">
+    <table id="main-table">
+      <tr><td id="controls">
+            <h2 id="title">Rockfall!</h2>
+            <p>
+              <h4>Controls:</h4>
+              <ul>
+                <li>Left/Right arrows: go left/right</li>
+                <li>s: Super science slow mo'</li>
+                <li>p: Pause</li>
+                <li>n: New game</li>
+              </ul>
+            </p>
+              <h4>Info:</h4>
+            <p>
+            Survive until the timer runs out to win. The game will get harder, starting at level 1, although if you die you'll drop to level 0. You begin with two hearts and lose one if struck by a rock. If you are struck with no hearts, you will die.
+            </p>
+          </td>
+          <td><canvas id="gameCanvas" width="500" height="500"></canvas></td>
+      </tr>
+    </table>
+  </body>
+</html>
