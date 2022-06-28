@@ -21,9 +21,7 @@ def login():
     username = request.form.get("username")
     password = request.form.get("password")
 
-    validated = all(
-        [isinstance(username, str), isinstance(password, str)]
-    )
+    validated = all([isinstance(username, str), isinstance(password, str)])
     if not validated:
         return jsonify({"error": validation_msg}), 401
 
