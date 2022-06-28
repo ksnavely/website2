@@ -15,14 +15,4 @@
             <p>I'm a software engineer and former nuclear physicist. Software is my passion -- Erlang, Python, distributed systems, infrastructure as code, and oh, roguelikes too.</p>
             </center>
           </div>
-          <div class="sidebar-module">
-            <center>
-            <h4>Archives</h4>
-            <ol class="list-unstyled">
-              {% for (y, m, m_name) in archive_dates() %}
-              <li><a href="{{ url_for('index') }}?date={{ y }}-{{ m }}">{{ m_name }} {{ y }}</a></li>
-              {% endfor %}
-            </ol>
-            </center>
-          </div>
         </div><!-- /.blog-sidebar -->
