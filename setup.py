@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name='website',
-      version='0.2.0',
+      version='0.2.1',
       description='Kube Flask App',
       author='Kyle Snavely',
       author_email='kjsnavely@gmail.com',

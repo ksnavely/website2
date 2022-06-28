@@ -62,10 +62,8 @@ class AccountTests(unittest.TestCase):
         hashed = "muh hash"
         m_get_hashed.return_value = hashed
 
-        timestamp = 12
-        utc = mock.Mock()
-        type(utc).timestamp = timestamp
-        m_utc.return_value = utc
+        m_for_json_return = 12
+        m_utc.return_value.for_json.return_value = m_for_json_return
 
         username = "some user"
         password = "some pass"
@@ -74,7 +72,7 @@ class AccountTests(unittest.TestCase):
             "_id": username,
             "username": username,
             "hashed_password": hashed,
-            "signup_date": timestamp,
+            "signup_date": m_for_json_return,
         }
 
         ret = accounts.create_account(username, password)

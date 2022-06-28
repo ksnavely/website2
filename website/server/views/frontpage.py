@@ -13,19 +13,6 @@ SKIP = 0
 
 def index():
     """
-    Returns version JSON.
-    """
-    info = {
-        "ok": True,
-        "version": __version__,
-        "kube": "ification"
-    }
-
-    return jsonify(info)
-
-
-def orig_index():
-    """
     Returns the frontpage.
     """
     count = request.args.get("count", COUNT)
