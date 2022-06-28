@@ -8,24 +8,6 @@ from flask_login import UserMixin
 class User(UserMixin):
     def __init__(self, username):
         self.id = username
-        self.is_active = True
-        self.is_authenticated = False
-        self.is_anonymous = True
-
-    @property
-    def is_active(self):
-        return self.__is_active
-
-    @property
-    def is_authenticated(self):
-        return self.__is_authenticated
-
-    @property
-    def is_anonymous(self):
-        return self.__is_active
-
-    def get_id(self):
-        return self.username
 
 
 def setup_auth_hooks(login_manager):

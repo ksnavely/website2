@@ -11,9 +11,12 @@ check passwords at authentication time.
 dispensed with a lot of the validation and niceties one might expect
 in production. Use at your own risk.
 """
+from website import config
+
 import arrow
 import bcrypt
 from pymongo import MongoClient as MongoClient
+from urllib.parse import quote_plus
 
 CLIENT = None
 
@@ -27,7 +30,7 @@ def create_account(username, password):
         "_id": username,
         "username": username,
         "hashed_password": hashed_pw,
-        "signup_date": arrow.utcnow().timestamp,
+        "signup_date": arrow.utcnow().for_json(),
     }
     return _create_account(doc)
 
@@ -57,12 +60,14 @@ def authenticate(username, password):
 def _client():
     global CLIENT
     if CLIENT is None:
-        CLIENT = MongoClient()
+        cfg = config.get_config()
+        uri = f'mongodb://{quote_plus(cfg["MONGODB_AUTH_USR"])}:{quote_plus(cfg["MONGODB_AUTH_PW"])}@{cfg["MONGODB_HOST"]}'
+        CLIENT = MongoClient(host=uri, authSource=cfg["MONGODB_AUTH_DB"])
     return CLIENT
 
 
 def _get_auth_collection():
-    return _client().accounts.auth
+    return _client().accounts.kdevops_auth
 
 
 def _get_hashed_password(plain_text_password):

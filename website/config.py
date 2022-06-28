@@ -12,6 +12,9 @@ defaults = {
     "MONGODB_DB": "blogs",
     "MONGODB_USR": "overrideme",
     "MONGODB_PW": "overrideme",
+    "MONGODB_AUTH_DB": "accounts",
+    "MONGODB_AUTH_USR": "overrideme",
+    "MONGODB_AUTH_PW": "overrideme",
 }
 
 
